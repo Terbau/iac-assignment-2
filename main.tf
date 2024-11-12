@@ -10,7 +10,7 @@ resource "azurerm_resource_group" "main" {
 module "keyvault" {
   source = "./modules/keyvault"
 
-  kv_name  = "bragebauoppg2kv"
+  kv_name  = "bboppg2kv"
   rg_name  = azurerm_resource_group.main.name
   location = azurerm_resource_group.main.location
   secrets  = {}
@@ -21,7 +21,7 @@ module "storage" {
 
   rg_name  = azurerm_resource_group.main.name
   location = azurerm_resource_group.main.location
-  sa_name  = "bragebauoppg2sa"
+  sa_name  = "bboppg2sa"
 }
 
 module "database" {
