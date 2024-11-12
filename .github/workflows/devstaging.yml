@@ -26,9 +26,6 @@ jobs:
       - name: Terraform workspace
         run: terraform workspace select dev || terraform workspace new dev
 
-      - name: Terraform Plan
-        run: terraform plan
-
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
@@ -44,9 +41,6 @@ jobs:
 
       - name: Terraform workspace
         run: terraform workspace select staging || terraform workspace new staging
-
-      - name: Terraform Plan
-        run: terraform plan
 
       - name: Terraform Apply
         run: terraform apply -auto-approve

@@ -27,8 +27,5 @@ jobs:
       - name: Terraform workspace
         run: terraform workspace select prod || terraform workspace new prod
 
-      - name: Terraform Plan
-        run: terraform plan
-
       - name: Terraform Apply
         run: terraform apply -auto-approve
