@@ -27,10 +27,10 @@ jobs:
         run: terraform workspace select dev || terraform workspace new dev
 
       - name: Terraform Plan
-        run: terraform plan --var-file="terraform.tfvars.dev" -out="main.dev.tfplan"
+        run: terraform plan -out="main.tfplan"
 
       - name: Terraform Apply
-        run: terraform apply "main.dev.tfplan" -auto-approve
+        run: terraform apply "main.tfplan" -auto-approve
 
       - name: Test Web Endpoint
         run: curl "http://$(terraform output -raw gateway-public-ip-address)"
@@ -52,10 +52,10 @@ jobs:
         run: terraform workspace select staging || terraform workspace new staging
 
       - name: Terraform Plan
-        run: terraform plan --var-file="terraform.tfvars.staging" -out="main.staging.tfplan"
+        run: terraform plan -out="main.tfplan"
 
       - name: Terraform Apply
-        run: terraform apply "main.staging.tfplan" -auto-approve
+        run: terraform apply "main.tfplan" -auto-approve
 
       - name: Test Web Endpoint
         run: curl "http://$(terraform output -raw gateway-public-ip-address)"
