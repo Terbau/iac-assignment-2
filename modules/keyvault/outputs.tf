@@ -1,4 +1,4 @@
-output "kv-id" {
+output "kv_id" {
   description = "The ID of the key vault"
   value       = azurerm_key_vault.main.id
 }

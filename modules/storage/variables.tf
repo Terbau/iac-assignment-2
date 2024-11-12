@@ -1,4 +1,4 @@
-variable "rg-name" {
+variable "rg_name" {
   description = "The name of the resource group"
   type        = string
 }
@@ -9,7 +9,7 @@ variable "location" {
   default     = "westeurope"
 }
 
-variable "sa-name" {
+variable "sa_name" {
   description = "The name of the storage account"
   type        = string
 }

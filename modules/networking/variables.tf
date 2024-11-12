@@ -1,19 +1,19 @@
-variable "nsg-name" {
+variable "nsg_name" {
   description = "The name of the network security group"
   type        = string
 }
 
-variable "vnet-name" {
+variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
 }
 
-variable "subnet-name" {
+variable "subnet_name" {
   description = "The name of the subnet"
   type        = string
 }
 
-variable "gateway-subnet-name" {
+variable "gateway_subnet_name" {
   description = "The name of the gateway subnet"
   type        = string
 }
@@ -24,12 +24,12 @@ variable "location" {
   default     = "westeurope"
 }
 
-variable "rg-name" {
+variable "rg_name" {
   description = "The name of the resource group"
   type        = string
 }
 
-variable "nic-name" {
+variable "nic_name" {
   description = "The name of the network interface"
   type        = string
 }

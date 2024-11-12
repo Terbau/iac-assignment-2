@@ -1,4 +1,4 @@
-variable "rg-name" {
+variable "rg_name" {
   description = "The name of the resource group"
   type        = string
 }
@@ -9,23 +9,22 @@ variable "location" {
   default     = "westeurope"
 }
 
-variable "mssql-server-name" {
+variable "mssql_server_name" {
   description = "The name of the MSSQL server"
   type        = string
 }
 
-variable "mssql-db-name" {
+variable "mssql_db_name" {
   description = "The name of the MSSQL database"
   type        = string
 }
 
-variable "admin-username" {
-  description = "The username for the database administrator"
+variable "kv_id" {
+  description = "The ID of the Key Vault to store the credentials in"
   type        = string
 }
 
-variable "admin-password" {
-  description = "The password for the database administrator"
+variable "admin_username" {
+  description = "The username for the MSSQL server"
   type        = string
-  sensitive   = true
 }

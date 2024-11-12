@@ -1,20 +1,20 @@
 locals {
-  public-ip-name = terraform.workspace == "default" ? var.public-ip-name : "${var.public-ip-name}-${terraform.workspace}"
-  gw-name        = terraform.workspace == "default" ? var.gw-name : "${var.gw-name}-${terraform.workspace}"
+  public_ip_name = terraform.workspace == "default" ? var.public_ip_name : "${var.public_ip_name}-${terraform.workspace}"
+  gw_name        = terraform.workspace == "default" ? var.gw_name : "${var.gw_name}-${terraform.workspace}"
 }
 
 resource "azurerm_public_ip" "main" {
-  name                = local.public-ip-name
-  resource_group_name = var.rg-name
+  name                = local.public_ip_name
+  resource_group_name = var.rg_name
   location            = var.location
   allocation_method   = "Static"
   sku                 = "Standard"
 }
 
 resource "azurerm_application_gateway" "main" {
-  name                = local.gw-name
+  name                = local.gw_name
   location            = var.location
-  resource_group_name = var.rg-name
+  resource_group_name = var.rg_name
 
   sku {
     name     = "Standard_v2"
@@ -24,7 +24,7 @@ resource "azurerm_application_gateway" "main" {
 
   gateway_ip_configuration {
     name      = "appGatewayIpConfig"
-    subnet_id = var.subnet-id
+    subnet_id = var.subnet_id
   }
 
   frontend_ip_configuration {

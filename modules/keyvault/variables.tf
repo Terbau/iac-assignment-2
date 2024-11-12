@@ -1,9 +1,9 @@
-variable "kv-name" {
+variable "kv_name" {
   description = "The name of the key vault"
   type        = string
 }
 
-variable "rg-name" {
+variable "rg_name" {
   description = "The name of the resource group"
   type        = string
 }

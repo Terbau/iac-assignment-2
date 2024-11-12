@@ -1,18 +1,18 @@
 locals {
-  nsg-name            = terraform.workspace == "default" ? var.nsg-name : "${var.nsg-name}-${terraform.workspace}"
-  vnet-name           = terraform.workspace == "default" ? var.vnet-name : "${var.vnet-name}-${terraform.workspace}"
-  subnet-name         = terraform.workspace == "default" ? var.subnet-name : "${var.subnet-name}-${terraform.workspace}"
-  gateway-subnet-name = terraform.workspace == "default" ? var.gateway-subnet-name : "${var.gateway-subnet-name}-${terraform.workspace}"
-  nic-name            = terraform.workspace == "default" ? var.nic-name : "${var.nic-name}-${terraform.workspace}"
+  nsg_name            = terraform.workspace == "default" ? var.nsg_name : "${var.nsg_name}-${terraform.workspace}"
+  vnet_name           = terraform.workspace == "default" ? var.vnet_name : "${var.vnet_name}-${terraform.workspace}"
+  subnet_name         = terraform.workspace == "default" ? var.subnet_name : "${var.subnet_name}-${terraform.workspace}"
+  gateway_subnet_name = terraform.workspace == "default" ? var.gateway_subnet_name : "${var.gateway_subnet_name}-${terraform.workspace}"
+  nic_name            = terraform.workspace == "default" ? var.nic_name : "${var.nic_name}-${terraform.workspace}"
 }
 
 resource "azurerm_network_security_group" "main" {
-  name                = local.nsg-name
+  name                = local.nsg_name
   location            = var.location
-  resource_group_name = var.rg-name
+  resource_group_name = var.rg_name
 
   security_rule {
-    name                       = "Allow-AppGateway-Inbound-Traffic"
+    name                       = "Allow_AppGateway_Inbound_Traffic"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
@@ -24,7 +24,7 @@ resource "azurerm_network_security_group" "main" {
   }
 
   security_rule {
-    name                       = "Allow-HTTP-Inbound-Traffic"
+    name                       = "Allow_HTTP_Inbound_Traffic"
     priority                   = 110
     direction                  = "Inbound"
     access                     = "Allow"
@@ -36,7 +36,7 @@ resource "azurerm_network_security_group" "main" {
   }
 
   security_rule {
-    name                       = "Allow-HTTPS-Inbound-Traffic"
+    name                       = "Allow_HTTPS_Inbound_Traffic"
     priority                   = 120
     direction                  = "Inbound"
     access                     = "Allow"
@@ -49,22 +49,22 @@ resource "azurerm_network_security_group" "main" {
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = local.vnet-name
+  name                = local.vnet_name
   location            = var.location
-  resource_group_name = var.rg-name
+  resource_group_name = var.rg_name
   address_space       = ["10.0.0.0/16"]
 }
 
 resource "azurerm_subnet" "main" {
-  name                 = local.subnet-name
-  resource_group_name  = var.rg-name
+  name                 = local.subnet_name
+  resource_group_name  = var.rg_name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
 resource "azurerm_subnet" "gateway" {
-  name                 = local.gateway-subnet-name
-  resource_group_name  = var.rg-name
+  name                 = local.gateway_subnet_name
+  resource_group_name  = var.rg_name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.2.0/24"]
 }
@@ -80,9 +80,9 @@ resource "azurerm_subnet_network_security_group_association" "gateway" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = local.nic-name
+  name                = local.nic_name
   location            = var.location
-  resource_group_name = var.rg-name
+  resource_group_name = var.rg_name
 
   ip_configuration {
     name                          = "internal"

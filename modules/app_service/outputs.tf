@@ -1,4 +1,4 @@
-output "sp-id" {
+output "sp_id" {
   description = "The ID of the service plan"
   value       = azurerm_service_plan.main.id
 }

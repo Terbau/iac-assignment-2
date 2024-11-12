@@ -1,4 +1,4 @@
-variable "rg-name" {
+variable "rg_name" {
   description = "The name of the resource group"
   type        = string
 }
@@ -9,28 +9,28 @@ variable "location" {
   default     = "westeurope"
 }
 
-variable "sp-name" {
+variable "sp_name" {
   description = "The name of the service plan"
   type        = string
 }
 
-variable "linux-web-app-name" {
+variable "linux_web_app_name" {
   description = "The name of the Linux web app"
   type        = string
 }
 
-variable "app-settings" {
+variable "app_settings" {
   description = "The app settings for the app service"
   type        = map(string)
   default     = {}
 }
 
-variable "mssql-connection-string" {
+variable "mssql_connection_string" {
   description = "The connection string for the MSSQL database"
   type        = string
 }
 
-variable "docker-image-name" {
+variable "docker_image_name" {
   description = "The name of the Docker image"
   type        = string
 }

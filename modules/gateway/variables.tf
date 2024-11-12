@@ -1,4 +1,4 @@
-variable "rg-name" {
+variable "rg_name" {
   description = "The name of the resource group"
   type        = string
 }
@@ -9,17 +9,17 @@ variable "location" {
   default     = "westeurope"
 }
 
-variable "public-ip-name" {
+variable "public_ip_name" {
   description = "The name of the public IP"
   type        = string
 }
 
-variable "gw-name" {
+variable "gw_name" {
   description = "The name of the gateway"
   type        = string
 }
 
-variable "subnet-id" {
+variable "subnet_id" {
   description = "The ID of the subnet"
   type        = string
 }

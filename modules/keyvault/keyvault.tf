@@ -1,5 +1,5 @@
 locals {
-  kv-name = terraform.workspace == "default" ? var.kv-name : "${var.kv-name}${terraform.workspace}"
+  kv_name = terraform.workspace == "default" ? var.kv_name : "${var.kv_name}${terraform.workspace}"
 }
 
 data "azurerm_client_config" "current" {}
@@ -11,9 +11,9 @@ resource "random_string" "this" {
 }
 
 resource "azurerm_key_vault" "main" {
-  name                        = "${local.kv-name}${random_string.this.result}"
+  name                        = "${local.kv_name}${random_string.this.result}"
   location                    = var.location
-  resource_group_name         = var.rg-name
+  resource_group_name         = var.rg_name
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days  = 7
