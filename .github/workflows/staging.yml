@@ -1,9 +1,8 @@
-name: Terraform CI/CD
+name: Terraform CI/CD STAGING
 
 on:
   push:
     branches:
-      - dev
       - staging
   workflow_dispatch:
 
@@ -14,23 +13,7 @@ env:
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
 jobs:
-  dev:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform workspace
-        run: terraform workspace select dev || terraform workspace new dev
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-
   staging:
-    needs: dev
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout

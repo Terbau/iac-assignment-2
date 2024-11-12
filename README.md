@@ -2,6 +2,8 @@
 
 My solution for the IAC compulsory assignment 2
 
+Link to github repo: https://github.com/Terbau/iac-assignment-2
+
 ## Prerequisites
 
 You need to be logged into a service principal. The easiest way to get this to work is by exporting the environment variables below (with correct values) to the current terminal session:
@@ -12,7 +14,6 @@ export ARM_TENANT_ID="<azure_subscription_tenant_id>"
 export ARM_CLIENT_ID="<service_principal_appid>"
 export ARM_CLIENT_SECRET="<service_principal_password>"
 ```
-
 
 ## Getting started
 
