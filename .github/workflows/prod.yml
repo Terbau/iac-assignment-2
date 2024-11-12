@@ -29,10 +29,10 @@ jobs:
         run: terraform workspace select prod || terraform workspace new prod
 
       - name: Terraform Plan
-        run: terraform plan -out="main.tfplan"
+        run: terraform plan
 
       - name: Terraform Apply
-        run: terraform apply "main.tfplan" -auto-approve
+        run: terraform apply -auto-approve
 
       - name: Test Web Endpoint
         run: curl "http://$(terraform output -raw gateway-public-ip-address)"
