@@ -12,30 +12,31 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
-prod:
-  needs: staging
-  runs-on: ubuntu-22.04
-  environment:
-    name: production
-    url: http://$(terraform output -raw gateway-public-ip-address)
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+jobs:
+  prod:
+    needs: staging
+    runs-on: ubuntu-22.04
+    environment:
+      name: production
+      url: http://$(terraform output -raw gateway-public-ip-address)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Terraform Init
-      run: terraform init
+      - name: Terraform Init
+        run: terraform init
 
-    - name: Terraform workspace
-      run: terraform workspace select prod || terraform workspace new prod
+      - name: Terraform workspace
+        run: terraform workspace select prod || terraform workspace new prod
 
-    - name: Terraform Plan
-      run: terraform plan --var-file="terraform.tfvars.prod" -out="main.prod.tfplan"
+      - name: Terraform Plan
+        run: terraform plan --var-file="terraform.tfvars.prod" -out="main.prod.tfplan"
 
-    - name: Terraform Apply
-      run: terraform apply "main.prod.tfplan" -auto-approve
+      - name: Terraform Apply
+        run: terraform apply "main.prod.tfplan" -auto-approve
 
-    - name: Test Web Endpoint
-      run: curl "http://$(terraform output -raw gateway-public-ip-address)"
+      - name: Test Web Endpoint
+        run: curl "http://$(terraform output -raw gateway-public-ip-address)"
 
-    - name: Get Web Endpoint
-      run: echo http://$(terraform output -raw gateway-public-ip-address)
+      - name: Get Web Endpoint
+        run: echo http://$(terraform output -raw gateway-public-ip-address)
