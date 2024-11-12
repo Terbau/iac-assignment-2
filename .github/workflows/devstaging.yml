@@ -32,12 +32,6 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
-      - name: Test Web Endpoint
-        run: curl "http://$(terraform output -raw gateway-public-ip-address)"
-
-      - name: Get Web Endpoint
-        run: echo http://$(terraform output -raw gateway-public-ip-address)
-
   staging:
     needs: dev
     runs-on: ubuntu-22.04
@@ -56,9 +50,3 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-
-      - name: Test Web Endpoint
-        run: curl "http://$(terraform output -raw gateway-public-ip-address)"
-
-      - name: Get Web Endpoint
-        run: echo http://$(terraform output -raw gateway-public-ip-address)

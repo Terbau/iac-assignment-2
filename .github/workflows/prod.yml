@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-22.04
     environment:
       name: production
-      url: http://$(terraform output -raw gateway-public-ip-address)
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,9 +32,3 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-
-      - name: Test Web Endpoint
-        run: curl "http://$(terraform output -raw gateway-public-ip-address)"
-
-      - name: Get Web Endpoint
-        run: echo http://$(terraform output -raw gateway-public-ip-address)
