@@ -1,9 +1,9 @@
-name: Terraform CI/CD PROD
+name: Terraform CI/CD DEV
 
 on:
   push:
     branches:
-      - main
+      - dev
   workflow_dispatch:
 
 env:
@@ -13,10 +13,8 @@ env:
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
 jobs:
-  prod:
+  dev:
     runs-on: ubuntu-22.04
-    environment:
-      name: production
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,7 +23,7 @@ jobs:
         run: terraform init
 
       - name: Terraform workspace
-        run: terraform workspace select prod || terraform workspace new prod
+        run: terraform workspace select dev || terraform workspace new dev
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
