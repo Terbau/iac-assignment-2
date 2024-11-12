@@ -36,7 +36,7 @@ Be sure to be in the root folder of this repository and make sure that the backe
 2. `terraform plan`
 3. `terraform apply`
 
-To verify that everything works, navigate to `http://<gateway_public_ip_address>` and see that the content is `Hello world`
+To verify that everything works, navigate to `http://<gateway_public_ip_address>` and see that the content is `Hello world`.
 
 ## How to destory resources
 
